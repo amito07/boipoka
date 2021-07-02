@@ -1,6 +1,6 @@
-import { CART_ADD_ITEM,CART_REMOVE_ITEM } from '../Constains/cartContants'
+import { CART_ADD_ITEM,CART_REMOVE_ITEM,SHIPPING_ADDRESS_SAVE,PAYMENT_METHOD_SAVE,CART_RESET_ITEM } from '../Constains/cartContants'
 
-export const cartReducer = (state = {cartItems:[]},action) =>{ 
+export const cartReducer = (state = {cartItems:[],shippingAddress:{}},action) =>{ 
     switch(action.type){
         case CART_ADD_ITEM :
             //make sure item already exist checking
@@ -33,6 +33,20 @@ export const cartReducer = (state = {cartItems:[]},action) =>{
                     ...state,
                     cartItems: state.cartItems.filter((x)=> x.product !== action.payload)
                 }
+        case SHIPPING_ADDRESS_SAVE:
+            return{
+                ...state,
+                shippingAddress: action.payload
+            } 
+            
+        case PAYMENT_METHOD_SAVE:
+            return{
+                ...state,
+                paymentMethod: action.payload
+            }  
+            
+        case CART_RESET_ITEM:
+            return{cartItems:[] , shippingAddress:{}}    
         default:
             return state
     }

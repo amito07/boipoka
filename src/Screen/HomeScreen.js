@@ -5,7 +5,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import {listProducts} from '../Actions/productActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-
+import Slider from '../Components/Slider'
 
 function HomeScreen() {
      const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function HomeScreen() {
 
     return (
         <>
+            {/* <Slider/> */}
             <h3>Latest Procucts</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
                 <Row>

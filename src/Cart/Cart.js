@@ -1,11 +1,12 @@
 import React,{useEffect} from 'react';
 import {useDispatch , useSelector} from 'react-redux';
 import Message from '../Components/Message';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import {addToCart , removeFromCart} from '../Actions/cartAction';
 import {Row,Col,ListGroup,Image,Form,Button,Card} from 'react-bootstrap';
 
 function Cart({match,location}) {
+    const history = useHistory();
     const dispatch = useDispatch();
     const productId = match.params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
@@ -20,7 +21,7 @@ function Cart({match,location}) {
     }
 
     const checkoutHandle  = ()=>{
-        console.log('Checkout')
+        history.push('/login?redirect=shipping')
     }
     return ( 
         <div style={{marginTop:'20px'}}>
@@ -80,9 +81,9 @@ function Cart({match,location}) {
                           <h3 style={{fontSize:'1rem', padding:'0.5rem 0'}}>Subtotal: ${cartItems.reduce((acc,item)=>acc +item.qty*item.price,0).toFixed(2)}</h3>
                       </ListGroup.Item>
                       <ListGroup.Item>
-                          <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandle} >
-                              Proceed To CheckOut
-                          </Button>
+                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandle} >
+                                Proceed To CheckOut
+                            </Button>
                       </ListGroup.Item>
                   </ListGroup>
               </Card>
