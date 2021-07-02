@@ -15,6 +15,7 @@ import PlaceOrderScreen from './Screen/PlaceOrderScreen'
 import OrderedItem from './Screen/OrderedItem'
 import UserListScreen from './Screen/UserListScreen'
 import ProductListScreen from './Screen/ProductListScreen'
+import EditProducts from './Screen/EditProducts'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/wishlist/:id?" component={WishList}/>
           <Route exact path="/getalluser" component={UserListScreen}/>
           <Route exact path="/productlist" component={ProductListScreen}/>
+          <Route exact path="/product/edit/:id" component={EditProducts}/>
         </Container>
       </main>
       <Footer/>

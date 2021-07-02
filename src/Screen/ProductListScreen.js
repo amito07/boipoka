@@ -53,7 +53,7 @@ function ProductListScreen() {
                             <td>{product.price}</td>
                             <td>{product.countInStock}</td>
                             <td>
-                                <LinkContainer to={`/product/${product._id}/edit`}>
+                                <LinkContainer to={`/product/edit/${product._id}`}>
                                     <Button variant='light' className='btn-sm'>
                                         <i className='fas fa-edit'></i>
                                     </Button>
