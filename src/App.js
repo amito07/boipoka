@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/wishlist/:id?" component={WishList}/>
           <Route exact path="/getalluser" component={UserListScreen}/>
           <Route exact path="/productlist" component={ProductListScreen}/>
-          <Route exact path="/product/edit/:id" component={EditProducts}/>
+          <Route exact path="/products/edit/:id" component={EditProducts}/>
         </Container>
       </main>
       <Footer/>

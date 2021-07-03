@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
-import {Table,Button} from 'react-bootstrap'
+import {Table,Button,Row,Col} from 'react-bootstrap'
 import {useDispatch , useSelector} from 'react-redux'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
@@ -28,9 +28,25 @@ function ProductListScreen() {
             history.push('/login')
         }
     }, [dispatch,history,successDelete])
+
+    const createProductHandler=()=>{
+        console.log("Clicked !!")
+    }
     return (
         <>
-        <h1>Products</h1>
+        <Row>
+            <Col>
+                <h1>Products</h1>
+            </Col>
+            <Col className='text-right'>
+                <Button className='my-4' onClick={createProductHandler}>
+                    <i className='fas fa-plus'></i>Create Product
+                </Button>
+
+            </Col>
+        </Row>
+        
+        
         {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>:
         (
             <Table striped bordered hover responsive className = 'table-sm'>
@@ -53,7 +69,7 @@ function ProductListScreen() {
                             <td>{product.price}</td>
                             <td>{product.countInStock}</td>
                             <td>
-                                <LinkContainer to={`/product/edit/${product._id}`}>
+                                <LinkContainer to={`/products/edit/${product._id}`}>
                                     <Button variant='light' className='btn-sm'>
                                         <i className='fas fa-edit'></i>
                                     </Button>
