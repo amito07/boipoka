@@ -30,7 +30,7 @@ function ProductListScreen() {
     }, [dispatch,history,successDelete])
 
     const createProductHandler=()=>{
-        console.log("Clicked !!")
+        history.push('/productCreate')
     }
     return (
         <>

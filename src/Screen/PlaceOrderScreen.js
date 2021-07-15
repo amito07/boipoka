@@ -16,7 +16,7 @@ function PlaceOrderScreen() {
     cart.shippingPrice = cart.itemsPrice > 0 ? 0:100
     cart.taxPrice = Number((0.15*cart.itemsPrice).toFixed(2))
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
-    console.log("Cart",cart)
+    // console.log("Cart",cart)
     const orderCreate = useSelector(state => state.orderCreate)
     const{order,success,error} = orderCreate
 

@@ -20,16 +20,43 @@ function HomeScreen() {
     return (
         <>
             {/* <Slider/> */}
-            <h3>Latest Procucts</h3>
+            <h3>Electronics Products</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
-                <Row>
+                <Row>   
                 {products.map(product =>(
+                    product.category === 'Electronics' &&
                     <Col key={product._id}>
                         <Product product = {product}/>
                     </Col>
                 ))}
                 </Row> 
             }
+            {/* <Slider/> */}
+            <h3>Cloths Product</h3>
+            {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
+                <Row>   
+                {products.map(product =>(
+                    product.category === 'cloths' &&
+                    <Col key={product._id}>
+                        <Product product = {product}/>
+                    </Col>
+                ))}
+                </Row> 
+            }
+
+            {/* <Slider/> */}
+            <h3>Food</h3>
+            {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
+                <Row>   
+                {products.map(product =>(
+                    product.category === 'foods' &&
+                    <Col key={product._id}>
+                        <Product product = {product}/>
+                    </Col>
+                ))}
+                </Row> 
+            }
+
         </>
     )
 }

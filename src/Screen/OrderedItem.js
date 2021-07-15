@@ -12,13 +12,21 @@ const dotenv = require("dotenv")
 
 dotenv.config()
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY)
+const stripePromise = loadStripe('pk_test_51J839LGS3UwNqyCmYTkxhH9VPtQrGhAw5vW80lBWwSjJdeSxgCEueAd7su05VTD7tO66tBKjuHcm10gQq4vcGSfI00DLhG6yU6')
 
 function OrderedItem({match}) {
-    const handleSubmit = (event,elements,stripe)=>{
+    const handleSubmit = async(event,elements,stripe)=>{
         event.preventDefault();
 
         if(!stripe || !elements) return;
+        const cardElement = elements.getElement(CardElement)
+        const {error , paymentMethod} = await stripe.createPaymentMethod({type:'card',card: cardElement})
+
+        if(error){
+            console.log(error)
+        }else{
+
+        }
         
 
     }
@@ -31,7 +39,7 @@ function OrderedItem({match}) {
     
     if(!loading){
      // //calculate prices
-     console.log(order)
+     console.log("Amit Order", order)
      const addDecimals = (num)=>{
          return (Math.round(num*100)/100).toFixed(2)
      }
