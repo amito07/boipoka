@@ -4,10 +4,12 @@ import {Row,Col,ListGroup,Image,Card,Container} from 'react-bootstrap'
 import {useDispatch , useSelector} from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import {getOrderDetails} from '../Actions/orderAction'
+import {getOrderDetails,payOrder} from '../Actions/orderAction'
 import {Elements,CardElement,ElementsConsumer} from '@stripe/react-stripe-js'
 import {loadStripe} from '@stripe/stripe-js'
 import {Button} from '@material-ui/core'
+import {ORDER_PAY_RESET,ORDER_CREATE_RESET,ORDER_DETAILS_RESET} from '../Constains/orderConstant'
+
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -15,27 +17,15 @@ dotenv.config()
 const stripePromise = loadStripe('pk_test_51J839LGS3UwNqyCmYTkxhH9VPtQrGhAw5vW80lBWwSjJdeSxgCEueAd7su05VTD7tO66tBKjuHcm10gQq4vcGSfI00DLhG6yU6')
 
 function OrderedItem({match}) {
-    const handleSubmit = async(event,elements,stripe)=>{
-        event.preventDefault();
-
-        if(!stripe || !elements) return;
-        const cardElement = elements.getElement(CardElement)
-        const {error , paymentMethod} = await stripe.createPaymentMethod({type:'card',card: cardElement})
-
-        if(error){
-            console.log(error)
-        }else{
-
-        }
-        
-
-    }
     const orderId = match.params.id
     const dispatch = useDispatch()
     const history = useHistory();
 
     const orderDetails = useSelector(state => state.orderDetails)
     const{order,loading,error} = orderDetails
+
+    const orderPay = useSelector(state => state.orderPay)
+    const{loading: loadingPay, success: successPay} = orderPay
     
     if(!loading){
      // //calculate prices
@@ -47,11 +37,47 @@ function OrderedItem({match}) {
 
     }
 
+    const handleSubmit = async(event,elements,stripe)=>{
+        event.preventDefault();
+        dispatch({type:ORDER_CREATE_RESET})
+        setTimeout(() => {
+            history.push('/congrats')
+            
+        }, 8000);
+
+        if(!stripe || !elements) return;
+        const cardElement = elements.getElement(CardElement)
+        const {error , paymentMethod} = await stripe.createPaymentMethod({
+            type:'card',
+            card: cardElement
+        })
+
+        if(error){
+            console.log(error)
+        }else{
+            try {
+                console.log("Paymet Method",paymentMethod)
+                dispatch(payOrder(orderId,paymentMethod))
+                
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+        
+
+    }
+
 
 
     useEffect(() => {
-        dispatch(getOrderDetails(orderId))
-    }, [dispatch])
+        if(!order || successPay){
+            dispatch({type:ORDER_PAY_RESET})
+            dispatch(getOrderDetails(orderId))
+        }else if(!order.isPaid){
+
+        }
+    }, [dispatch,orderId,successPay,order])
 
     return loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : 
     <>

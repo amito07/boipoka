@@ -5,7 +5,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
 import {getuserDetails,updateUser} from '../Actions/userAction'
-
+import {listMyOrders} from '../Actions/orderAction'
 
 function Profile({}) {
     const history = useHistory();
@@ -28,6 +28,9 @@ function Profile({}) {
     const userUpdate = useSelector(state => state.userUpdate)
     const {success} = userUpdate
 
+    const orderMyList = useSelector(state => state.orderMyList)
+    const {loading: loadingOrders ,error:errorOrders ,orders} = orderMyList
+
 
     useEffect(() => {
         if(!userInfo){
@@ -36,6 +39,7 @@ function Profile({}) {
             if(!userInfo.name){
                 dispatch(getuserDetails('profile'))
             }else{
+                dispatch(listMyOrders())
                 setName(userInfo.name)
                 setEmail(userInfo.email)
                 setPhone(userInfo.phone)

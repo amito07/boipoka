@@ -5,7 +5,7 @@ import { productListReducer , productDetailsReducer,adminProductListReducer,prod
 import {cartReducer} from './Reducers/cartReducer'
 import {wishReducer} from './Reducers/wishReducer'
 import {userLoginReducer,userRegisterReducer,userUpdateReducer,userListReducer,userDeleteReducer} from './Reducers/userReducer'
-import {orderCreateReducer,orderDetailsReducer,orderPayReducer} from './Reducers/orderReducer'
+import {orderCreateReducer,orderDetailsReducer,orderPayReducer,orderMyListReducer} from './Reducers/orderReducer'
 
 
 
@@ -45,7 +45,8 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
     orderCreate:orderCreateReducer,
     orderDetails:orderDetailsReducer,
-    orderPay:orderPayReducer
+    orderPay:orderPayReducer,
+    orderMyList : orderMyListReducer
 })
 //it is work as a middleware (thunk)
 const middleware = [thunk]

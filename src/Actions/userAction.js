@@ -95,7 +95,7 @@ export const register = (name,email,phone,address,password)=>async(dispatch)=>{
 
 //Get User Info Action
 export const getuserDetails = (id)=>async(dispatch,getState)=>{
-    console.log(id)
+    console.log("Get User Action")
     try {
         dispatch({
             type: USER_DETAILS_REQUEST,
