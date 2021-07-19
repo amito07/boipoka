@@ -5,9 +5,8 @@ import {useDispatch , useSelector} from 'react-redux'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
 import {getuserDetails,updateUser} from '../Actions/userAction'
-import {listMyOrders} from '../Actions/orderAction'
 
-function Profile({}) {
+function Profile() {
     const history = useHistory();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -28,10 +27,6 @@ function Profile({}) {
     const userUpdate = useSelector(state => state.userUpdate)
     const {success} = userUpdate
 
-    const orderMyList = useSelector(state => state.orderMyList)
-    const {loading: loadingOrders ,error:errorOrders ,orders} = orderMyList
-
-
     useEffect(() => {
         if(!userInfo){
             history.push('/')
@@ -39,7 +34,6 @@ function Profile({}) {
             if(!userInfo.name){
                 dispatch(getuserDetails('profile'))
             }else{
-                dispatch(listMyOrders())
                 setName(userInfo.name)
                 setEmail(userInfo.email)
                 setPhone(userInfo.phone)
@@ -58,7 +52,7 @@ function Profile({}) {
     }
     return (
         <Row>
-            <Col md={3}>
+            <Col md={8}>
             <h2>User Profile</h2>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
@@ -108,11 +102,6 @@ function Profile({}) {
             </Form>
     
             </Col>
-
-            <Col md={9}>
-                <h2>My Orders</h2>
-            </Col>
-
 
         </Row>
     )

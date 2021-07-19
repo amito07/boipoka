@@ -134,8 +134,8 @@ export const listMyOrders = ()=>async(dispatch,getState)=>{
         }
 
         //getting user data including tokens and so..........
-        const {data} = await axios.get(`/api/orders/myorders`,config)
-        console("Orders Data",data)
+        const {data} = await axios.get(`/api/orders/myorder`,config)
+        console.log("Orders Data",data)
 
         dispatch({
             type: ORDER_MYORDERS_SUCCESS,
