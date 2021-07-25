@@ -19,6 +19,7 @@ import EditProducts from './Screen/EditProducts'
 import CreateProductScreen from './Screen/CreateProductScreen'
 import Congrats from './Screen/Congrats'
 import Myorder from './Screen/Myorder'
+import AdminOrderList from './Screen/AdminOrderList'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route exact path="/productCreate" component={CreateProductScreen}/>
           <Route exact path="/congrats" component={Congrats}/>
           <Route exact path="/myorders" component={Myorder}/>
+          <Route exact path="/admin/orderlist" component={AdminOrderList}/>
         </Container>
       </main>
       <Footer/>

@@ -9,6 +9,7 @@ function Items({match}) {
     const dispatch = useDispatch()
     const productDetails = useSelector(state => state.productDetails)
     const {loading , error , product} = productDetails
+
     console.log("Loading",loading)
     console.log("Error",error)
     console.log("Products",product)
