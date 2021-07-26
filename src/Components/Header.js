@@ -5,6 +5,7 @@ import '../Components/Header.css'
 import {Link} from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import {logout} from '../Actions/userAction'
+import SearchBox from './SearchBox'
 
 function Header({color,color2}) {
     const userLogin = useSelector(state => state.userLogin)
@@ -23,6 +24,7 @@ function Header({color,color2}) {
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBox/>
                         <Nav className="header-component">
                             <LinkContainer to="/cart">
                                 <Nav.Link><i className="fas fa-shopping-cart"></i>CART</Nav.Link>

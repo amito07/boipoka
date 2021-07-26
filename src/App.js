@@ -34,10 +34,11 @@ function App() {
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/register" component={RegisterScreen}/>
           <Route exact path="/login" component={LoginScreen}/>
+          <Route  path="/search/:keyword" component={HomeScreen}/>
           <Route exact path="/" component={HomeScreen}/>
           <Route exact path="/cart/:id?" component={Cart}/>
           <Route exact path="/product/:id" component={Items}/>
-          <Route exact path="/wishlist/:id?" component={WishList}/>
+          <Route exact path="/wishlist/:id?" component={WishList}/> 
           <Route exact path="/getalluser" component={UserListScreen}/>
           <Route exact path="/productlist" component={ProductListScreen}/>
           <Route exact path="/products/edit/:id" component={EditProducts}/>

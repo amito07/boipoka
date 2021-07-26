@@ -5,15 +5,17 @@ import {PRODUCT_LIST_REQUEST , PRODUCT_LIST_SUCCESS ,
     PRODUCT_UPDATE_REQUEST,PRODUCT_UPDATE_SUCCESS,PRODUCT_UPDATE_FAIL,
     PRODUCT_CREATE_REQUEST,PRODUCT_CREATE_SUCCESS,PRODUCT_CREATE_FAIL,
     PRODUCT_CREATE_REVIEW_REQUEST,PRODUCT_CREATE_REVIEW_SUCCESS,
-    PRODUCT_CREATE_REVIEW_FAIL,PRODUCT_CREATE_REVIEW_RESET
+    PRODUCT_CREATE_REVIEW_FAIL,PRODUCT_PRODUCT_TOP_REQUEST,
+    PRODUCT_PRODUCT_TOP_SUCCESS,PRODUCT_PRODUCT_TOP_FAIL
    } from '../Constains/productConstants'
 import axios from 'axios'
 
-export const listProducts = () => async(dispatch)=>{
+export const listProducts = (keyword = '') => async(dispatch)=>{
+    console.log(keyword)
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
 
-       const {data} = await axios.get('/api/products')
+       const {data} = await axios.get(`/api/products?keyword=${keyword}`)
 
        dispatch({
            type: PRODUCT_LIST_SUCCESS,
@@ -177,4 +179,33 @@ export const createProduct = (product) => async(dispatch,getState)=>{
     }
  
  }
+
+ export const listTopProducts = () => async(dispatch,getState)=>{
+    try {
+        dispatch({type: PRODUCT_PRODUCT_TOP_REQUEST})
+
+        const {userLogin:{userInfo}} = getState()
+
+        //set the header for the get method
+        const config = {
+            headers:{
+                Authorization: `Bearer ${userInfo.token}` 
+            }
+        }
+ 
+        const {data} = await axios.get(`/api/products/top`)
+ 
+        dispatch({ type: PRODUCT_PRODUCT_TOP_SUCCESS,payload: data})
+        
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_PRODUCT_TOP_FAIL,
+            payload: error.response && error.response.data.message ? 
+            error.response.data.message : error.message,
+        })
+        
+    }
+ 
+ }
+
 

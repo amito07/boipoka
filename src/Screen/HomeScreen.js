@@ -6,20 +6,24 @@ import {listProducts} from '../Actions/productActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import Slider from '../Components/Slider'
+import ProductCarousel from '../Components/ProductCarousel'
 
-function HomeScreen() {
+function HomeScreen({match}) {
+
+    const keyword = match.params.keyword
+
      const dispatch = useDispatch()
-
      const productList = useSelector(state => state.productList)
      const {loading , error , products} = productList
     useEffect(() => {
-        dispatch(listProducts())
+        dispatch(listProducts(keyword))
 
-    }, [dispatch])
-
+    }, [dispatch ,keyword])
+ 
     return (
         <>
-            {/* <Slider/> */}
+            {!keyword && <ProductCarousel/>}
+
             <h3>Electronics Products</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
                 <Row>   
@@ -31,7 +35,7 @@ function HomeScreen() {
                 ))}
                 </Row> 
             }
-            {/* <Slider/> */}
+
             <h3>Cloths Product</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
                 <Row>   
@@ -44,7 +48,6 @@ function HomeScreen() {
                 </Row> 
             }
 
-            {/* <Slider/> */}
             <h3>Food</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>: 
                 <Row>   

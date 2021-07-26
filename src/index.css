@@ -12,4 +12,31 @@ h2{
   padding: 0.5rem 0;
 }
 
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active{
+  display: flex;
+}
+
+
+.carousel-caption h2{
+  color: black;
+}
+
+.carousel-caption p{
+  color: black;
+}
+
+.carousel-img{
+  width: 100%;
+  height: 40vw;
+}
+
+
+.carousel a{
+  margin: 0 auto;
+}
+
+
+
 
