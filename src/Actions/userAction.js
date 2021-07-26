@@ -2,7 +2,7 @@ import axios from 'axios'
 import {USER_LOGIN_REQUEST , USER_LOGIN_SUCCESS ,
     USER_LOGIN_FAIL ,USER_LOGOUT,USER_REG_REQUEST,USER_REG_SUCCESS,USER_REG_FAIL,
     USER_DETAILS_REQUEST,USER_DETAILS_SUCCESS,USER_DETAILS_FAIL,USER_UPDATE_REQUEST,
-    USER_UPDATE_SUCCESS,USER_UPDATE_FAIL,USER_UPDATE_RESET,USER_LIST_REQUEST,
+    USER_UPDATE_SUCCESS,USER_UPDATE_FAIL,USER_LIST_REQUEST,
     USER_LIST_SUCCESS,USER_LIST_FAIL,USER_LIST_RESET,USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,USER_DELETE_FAIL
    } from '../Constains/signupConstants'
@@ -218,7 +218,7 @@ export const DeleteUser = (id)=>async(dispatch,getState)=>{
         }
 
         //getting user data including tokens and so..........
-        const {data} = await axios.delete(`/api/users/deleteUser/${id}`,config)
+        await axios.delete(`/api/users/deleteUser/${id}`,config)
 
         dispatch({type: USER_DELETE_SUCCESS})
     } catch (error) {

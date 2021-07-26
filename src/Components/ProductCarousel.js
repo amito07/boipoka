@@ -1,12 +1,9 @@
 import React,{useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import {Carousel , Image} from 'react-bootstrap'
-import {Row,Col} from 'react-bootstrap'
+import {Carousel} from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
 import {listTopProducts} from '../Actions/productActions'
 import {useDispatch , useSelector} from 'react-redux'
-import {listProducts} from '../Actions/productActions'
 
 
 function ProductCarousel() {
@@ -26,27 +23,8 @@ function ProductCarousel() {
     return loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>
 
         :(
-        //  <Carousel pause='hover' className='bd-dark'>
-        //      {products.map(product=>(
-        //          <Carousel.Item key={product._id}>
-        //              <Row>
-        //                  <Col md={7}>
-        //                     <Link to ={`/product/${product._id}`}>
-        //                         <Image src={product.image} alt={product.name} fluid/>
-        //                     </Link>
-        //                  </Col>
 
-        //                  <Col md={5}>
-        //                     <Carousel.Caption className='carousel-caption'>
-        //                         <h2>{product.name} ({product.price})</h2>
-        //                     </Carousel.Caption>
-        //                  </Col>
-        //              </Row>
-                     
-        //          </Carousel.Item>
-        //      ))}
-        //  </Carousel>
-        <Carousel>
+        <Carousel style={{marginTop: '50px'}}>
             {products.map(product=>(
                 <Carousel.Item>
 

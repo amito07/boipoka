@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react'
-import {useDispatch , useSelector} from 'react-redux'
+import React,{useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {ORDER_DETAILS_RESET} from '../Constains/orderConstant'
 import {CART_RESET_ITEM} from '../Constains/cartContants'

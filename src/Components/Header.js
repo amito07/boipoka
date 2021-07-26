@@ -20,7 +20,7 @@ function Header({color,color2}) {
             <Navbar bg="dark" sticky="top" variant="dark" expand="lg" collapseOnSelect>
                 <Container>
                     <Link to="/" className="text-decoration-none">
-                        <Navbar.Brand >BoiPoka.com</Navbar.Brand>
+                        <Navbar.Brand >Bazar Sodai.com</Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

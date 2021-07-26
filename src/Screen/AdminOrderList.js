@@ -1,12 +1,10 @@
 import React,{useEffect} from 'react'
-import {LinkContainer} from 'react-router-bootstrap'
 import {adminOrderShow} from '../Actions/orderAction'
 import {useDispatch , useSelector} from 'react-redux'
 import {Table,Button,Row,Col} from 'react-bootstrap'
 import Message from '../Components/Message'
 import {orderDelivery} from '../Actions/orderAction'
 import Loader from '../Components/Loader'
-import axios from 'axios'
 
 function AdminOrderList() {
     const dispatch = useDispatch();

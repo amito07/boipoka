@@ -5,7 +5,6 @@ import {useDispatch , useSelector} from 'react-redux'
 import {listProducts} from '../Actions/productActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import Slider from '../Components/Slider'
 import ProductCarousel from '../Components/ProductCarousel'
 
 function HomeScreen({match}) {
